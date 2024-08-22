@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchMemes } from './api';
+
 import { Header } from './components/Header';
+import { MemeGenerator } from './components/MemeGenerator';
 
 const App = () => {
     // State for Fetched Meme Array
@@ -11,22 +13,19 @@ const App = () => {
     // useEffect for axios GET request to "https://api.imgflip.com/get_memes"
     useEffect(() => {
         fetchMemes.then((res) => setMemeList(res.memes));
-        console.log(memeList);
-    }, []);
+    }, [memeList]);
 
     //  CRUD Functionality for Saved Memes
     //    PUT - Edit
     //    DELETE
     //    POST - Choice for user adding meme to imgflip for public use.
 
-    // // Testing Console Logs
-    // console.log(memeList);
-    // console.log(memeList[0]);
-    // console.log(savedMemeList);
-    // console.log(savedMemeList[0]);
+    const getMeme = () => {
+        const randomIndex = Math.floor(Math.random() * memeList.length);
+    };
 
     return (
-        <div>
+        <>
             {/*
               Header
                 Title
@@ -34,8 +33,9 @@ const App = () => {
                 Signature
             */}
             <Header />
+
             {/* 
-              Meme Generator: Center of page unless displayed with Saved List or Mobile - Then on left side.
+              Meme Generator
                 Image Display
                   Refresh
                   Clear
@@ -46,8 +46,10 @@ const App = () => {
                     Text Position Sliders
                     Additional Input Layouts
             */}
+            <MemeGenerator memes={memeList} />
+
             {/* 
-              Saved List: Conditionally rendered if user wishes to view - Then on right side
+              Saved List
                 List Item
                   Edit
                   Delete
@@ -59,7 +61,7 @@ const App = () => {
                 Accredidation 
                 Copyright
             */}
-        </div>
+        </>
     );
 };
 
