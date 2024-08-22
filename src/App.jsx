@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchMemes } from '../http';
+import { fetchMemes } from './api';
 
 const App = () => {
     // State for Fetched Meme Array
