@@ -12,10 +12,22 @@ const App = () => {
     return (
         <div>
             {/* Header */}
-            {/* Image Display */}
+              {/* Title */}
+              {/* Theme */}
+              {/* Signature */}
+            {/* Meme Generator: Center of page unless displayed with Saved List or Mobile - Then on left side. */}
+              {/* Image Display */}
                 {/* Refresh Button */}
-            {/* Creation Form */}
-            {/* Saved List */}
+                {/* Clear Button */}
+                {/* Creation Form */}
+                  {/* Top Text */}
+                  {/* Bottom Text */}
+                  {/* Optional: Additional Input Layouts (For memes with more than 2 slides) */}
+                  {/* Submit Button */}
+            {/* Saved List: Conditionally rendered if user wishes to view - Then on right side*/}
+              {/* List Item */}
+                {/* Edit */}
+                {/* Delete */}
             {/* Footer */}
         </div>
     );
