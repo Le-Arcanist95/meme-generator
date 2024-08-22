@@ -10,12 +10,19 @@ const App = () => {
     // useEffect for axios GET request to "https://api.imgflip.com/get_memes"
     useEffect(() => {
         fetchMemes.then((res) => setMemeList(res.memes));
+        console.log(memeList);
     }, []);
 
-    // CRUD Functionality for Saved Memes
-    // PUT - Edit
-    // DELETE
-    // POST - Choice for user adding meme to imgflip for public use.
+    //  CRUD Functionality for Saved Memes
+    //    PUT - Edit
+    //    DELETE
+    //    POST - Choice for user adding meme to imgflip for public use.
+
+    // // Testing Console Logs
+    // console.log(memeList);
+    // console.log(memeList[0]);
+    // console.log(savedMemeList);
+    // console.log(savedMemeList[0]);
 
     return (
         <div>
