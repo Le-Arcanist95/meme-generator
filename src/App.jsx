@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchMemes } from './api';
+import { Header } from './components/Header';
 
 const App = () => {
     // State for Fetched Meme Array
@@ -32,6 +33,7 @@ const App = () => {
                 Theme
                 Signature
             */}
+            <Header />
             {/* 
               Meme Generator: Center of page unless displayed with Saved List or Mobile - Then on left side.
                 Image Display
