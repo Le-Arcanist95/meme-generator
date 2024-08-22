@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { fetchMemes } from '../http';
 
 const App = () => {
     // State for Fetched Meme Array
@@ -7,6 +8,9 @@ const App = () => {
     const [savedMemeList, setSavedMemeList] = useState([]);
 
     // useEffect for axios GET request to "https://api.imgflip.com/get_memes"
+    useEffect(() => {
+        fetchMemes.then((res) => setMemeList(res.memes));
+    }, []);
 
     // CRUD Functionality for Saved Memes
     // PUT - Edit
