@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-export const MemeGenerator = ({ memes, handleSubmit }) => {
+export const MemeGenerator = ({ memes, saveMeme }) => {
     //  Initial input state for reset and clear
     const initInputState = {
         topText: '',
@@ -33,7 +33,7 @@ export const MemeGenerator = ({ memes, handleSubmit }) => {
         }));
     };
 
-    const handleClear = (e) => {
+    const handleClear = () => {
         setInputFields(initInputState);
     };
 
@@ -43,6 +43,14 @@ export const MemeGenerator = ({ memes, handleSubmit }) => {
 
         setCurrentMeme({ ...newMeme, id: uuidv4() });
         // setCurrentMeme((prev) => ({ ...prev, id: uuidv4() }));
+        setInputFields(initInputState);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        saveMeme({ ...currentMeme, ...inputFields });
+        setCurrentMeme((prev) => ({ ...prev, id: uuidv4() }));
         setInputFields(initInputState);
     };
 

@@ -3,6 +3,7 @@ import { fetchMemes } from './api';
 
 import { Header } from './components/Header';
 import { MemeGenerator } from './components/MemeGenerator';
+import { SavedList } from './components/SavedList';
 
 const App = () => {
     // State for Fetched Meme Array
@@ -15,7 +16,7 @@ const App = () => {
         fetchMemes.then((res) => {
             setMemeList(res.memes.filter((memeObj) => memeObj.box_count === 2));
         });
-    }, [memeList]);
+    }, []);
 
     //  CRUD Functionality for Saved Memes
     //    POST - Save Meme
@@ -23,58 +24,35 @@ const App = () => {
         setSavedMemeList((prev) => [...prev, data]);
     };
     //    PUT - Edit Meme
-    const editMeme = (id, editData) => {
-        savedMemeList.map((savedMeme) => {
-            if (savedMeme.id === id) {
-                return { ...savedMeme, editData };
-            } else {
-                return savedMeme;
-            }
-        });
+    const editMeme = (id, updatedData) => {
+        setSavedMemeList((prev) =>
+            prev.map((savedMeme) =>
+                savedMeme.id === id ? { ...savedMeme, updatedData } : savedMeme
+            )
+        );
     };
     //    DELETE - Delete Meme
     const deleteMeme = (id) => {
-        savedMemeList.filter((savedMeme) => savedMeme.id !== id);
+        setSavedMemeList((prev) =>
+            prev.filter((savedMeme) => savedMeme.id !== id)
+        );
     };
 
     return (
-        <>
-            {/*
-              Header
-                Title
-                Theme
-                Signature
-            */}
+        <div className="wrapper">
             <Header />
-
-            {/* 
-              Meme Generator
-                Image Display
-                  Refresh
-                  Clear
-                Creation Form
-                  Top/Bottom Inputs
-                  Submit
-                  Optional:
-                    Text Position Sliders
-                    Additional Input Layouts
-            */}
-            <MemeGenerator memes={memeList} handleSubmit={saveMeme} />
-
-            {/* 
-              Saved List
-                List Item
-                  Edit
-                  Delete
-                  Optional: Upload
-            */}
+            <MemeGenerator memes={memeList} saveMeme={saveMeme} />
+            <SavedList
+                functions={{ editMeme, deleteMeme }}
+                savedMemes={savedMemeList}
+            />
             {/* 
               Footer
                 Social Links
                 Accredidation 
                 Copyright
             */}
-        </>
+        </div>
     );
 };
 
