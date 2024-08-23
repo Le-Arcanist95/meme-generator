@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
-export const MemeGenerator = ({ memes }) => {
+export const MemeGenerator = ({ memes, handleSubmit }) => {
     //  Initial input state for reset and clear
     const initInputState = {
         topText: '',
@@ -9,7 +10,7 @@ export const MemeGenerator = ({ memes }) => {
 
     //  State for access to current imageUrl and box_count
     const [currentMeme, setCurrentMeme] = useState({
-        id: '',
+        id: uuidv4(),
         name: '',
         url: '',
         height: 0,
@@ -21,39 +22,8 @@ export const MemeGenerator = ({ memes }) => {
         topText: '',
         bottomText: '',
     });
-    // State for scalable font size
-    const [fontSizing, setFontSizing] = useState({
-        fontSize: '78px',
-    });
-
-    useEffect(() => {
-        console.log(currentMeme);
-    }, [currentMeme]);
-    //  useEffect to initialize component mount
-    // useEffect(() => {
-    //     //  Handling for loading variable and component
-    //     if (currentMeme === undefined) {
-    //         setIsLoading(true);
-    //     } else if (Object.keys(currentMeme).length > 0) {
-    //         setIsLoading(false);
-    //     }
-
-    //     console.log(currentMeme);
-    //     console.log(isLoading);
-    // }, [currentMeme, memes, isLoading]);
 
     // Functions to handle State changes
-
-    // Function for checking if content is overflown
-    const isOverflown = ({
-        clientWidth,
-        clientHeight,
-        scrollWidth,
-        scrollHeight,
-    }) => {
-        return scrollHeight > clientHeight || scrollWidth > clientWidth;
-    };
-
     const handleFormChange = (e) => {
         const { name, value } = e.target;
 
@@ -61,10 +31,6 @@ export const MemeGenerator = ({ memes }) => {
             ...prev,
             [name]: value,
         }));
-
-        if (isOverflown()) {
-            setFontSizing
-        }
     };
 
     const handleClear = (e) => {
@@ -73,25 +39,15 @@ export const MemeGenerator = ({ memes }) => {
 
     const handleNewMeme = () => {
         const randomIndex = Math.floor(Math.random() * memes.length);
+        const newMeme = memes[randomIndex];
 
-        setCurrentMeme(memes[randomIndex]);
+        setCurrentMeme({ ...newMeme, id: uuidv4() });
+        // setCurrentMeme((prev) => ({ ...prev, id: uuidv4() }));
         setInputFields(initInputState);
     };
 
     return (
-        <div>
-            {/* 
-                        Meme Generator
-                            Image Display
-                            Refresh
-                            Clear
-                        Creation Form
-                            Top/Bottom Inputs
-                            Submit
-                        Optional:
-                            Text Position Sliders
-                            Additional Input Layouts
-                    */}
+        <div className="generator-container">
             <div className="meme-display">
                 <img
                     src={
@@ -104,17 +60,15 @@ export const MemeGenerator = ({ memes }) => {
                 <button className="clear-button" onClick={handleClear}>
                     X
                 </button>
-                <p className="top-text meme-text" style={fontSizing}>
-                    {inputFields.topText}
-                </p>
-                <p className="bottom-text meme-text" style={fontSizing}>
+                <p className="top-text meme-text">{inputFields.topText}</p>
+                <p className="bottom-text meme-text">
                     {inputFields.bottomText}
                 </p>
             </div>
             <button className="refresh-button" onClick={handleNewMeme}>
                 Refresh
             </button>
-            <form className="input-form">
+            <form className="input-form" onSubmit={handleSubmit}>
                 <input
                     type="text"
                     name="topText"
@@ -129,7 +83,7 @@ export const MemeGenerator = ({ memes }) => {
                     value={inputFields.bottomText}
                     onChange={handleFormChange}
                 />
-                <button>Save</button>
+                <button type="submit">Save</button>
             </form>
         </div>
     );

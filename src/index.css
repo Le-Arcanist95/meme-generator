@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+.generator-container {
+    height: 80vh;
+}
+
 .meme-display {
     position: relative;
     display: flex;
@@ -51,6 +55,7 @@
 .meme-text {
     text-align: center;
     word-wrap: break-word;
+    font-size: 2.5em;
     font-weight: bolder;
     text-transform: uppercase;
     color: whitesmoke;

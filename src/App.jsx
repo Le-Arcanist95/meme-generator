@@ -12,13 +12,21 @@ const App = () => {
 
     // useEffect for axios GET request to "https://api.imgflip.com/get_memes"
     useEffect(() => {
-        fetchMemes.then((res) => setMemeList(res.memes));
+        fetchMemes.then((res) => {
+            setMemeList(res.memes.filter((memeObj) => memeObj.box_count === 2));
+        });
     }, [memeList]);
 
     //  CRUD Functionality for Saved Memes
-    //    PUT - Edit
-    //    DELETE
-    //    POST - Choice for user adding meme to imgflip for public use.
+    //    POST - Save Meme
+    const saveMeme = (data) => {
+        setSavedMemeList((prev) => [...prev, data]);
+    };
+    //    PUT - Edit Meme
+    const editMeme = (id, editData) => {
+        setSavedMemeList(prev => [...prev, ])
+    }
+    //    DELETE - Delete Meme
 
     return (
         <>
@@ -42,7 +50,7 @@ const App = () => {
                     Text Position Sliders
                     Additional Input Layouts
             */}
-            <MemeGenerator memes={memeList} />
+            <MemeGenerator memes={memeList} handleSubmit={saveMeme} />
 
             {/* 
               Saved List
