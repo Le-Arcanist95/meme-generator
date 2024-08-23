@@ -24,9 +24,18 @@ const App = () => {
     };
     //    PUT - Edit Meme
     const editMeme = (id, editData) => {
-        setSavedMemeList(prev => [...prev, ])
-    }
+        savedMemeList.map((savedMeme) => {
+            if (savedMeme.id === id) {
+                return { ...savedMeme, editData };
+            } else {
+                return savedMeme;
+            }
+        });
+    };
     //    DELETE - Delete Meme
+    const deleteMeme = (id) => {
+        savedMemeList.filter((savedMeme) => savedMeme.id !== id);
+    };
 
     return (
         <>
