@@ -20,10 +20,6 @@ const App = () => {
     //    DELETE
     //    POST - Choice for user adding meme to imgflip for public use.
 
-    const getMeme = () => {
-        const randomIndex = Math.floor(Math.random() * memeList.length);
-    };
-
     return (
         <>
             {/*
