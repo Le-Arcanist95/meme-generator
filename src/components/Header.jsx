@@ -1,17 +1,31 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+
 export const Header = (props) => {
     return (
-        <header
-            style={{
-                display: 'flex',
-                marginBottom: '2em',
-                padding: '1rem',
-                justifyContent: 'space-between',
-                outline: '1px solid black',
-            }}
-        >
-            <h1>Meme Generator</h1>
-            <button>Toggle Theme</button>
-            <h2>Nix Arcane</h2>
+        <header className={`heading flex-container ${props.theme}`}>
+            <div className="flex-item">
+                <h1 className="page-title">Another Meme Generator</h1>
+            </div>
+            <div className="flex-item">
+                <button
+                    className={`theme-toggleBtn ${props.theme}`}
+                    onClick={() => {
+                        props.theme === 'light'
+                            ? props.functions.themeToggle('dark')
+                            : props.functions.themeToggle('light');
+                    }}
+                >
+                    {props.theme === 'light' ? (
+                        <FontAwesomeIcon icon={faMoon} />
+                    ) : (
+                        <FontAwesomeIcon icon={faSun} />
+                    )}
+                </button>
+            </div>
+            <div className="flex-item">
+                <h2 className="page-signature">Nix Arcane</h2>
+            </div>
         </header>
     );
 };

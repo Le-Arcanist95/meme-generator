@@ -10,6 +10,8 @@ const App = () => {
     const [memeList, setMemeList] = useState([]);
     // State for Saved Meme Array
     const [savedMemeList, setSavedMemeList] = useState([]);
+    // State for Theme Context
+    const [theme, setTheme] = useState('light');
 
     // useEffect for axios GET request to "https://api.imgflip.com/get_memes"
     useEffect(() => {
@@ -38,9 +40,23 @@ const App = () => {
         );
     };
 
+    const themeToggle = (themeVal) => {
+        switch (themeVal) {
+            case 'light':
+                setTheme('light');
+                break;
+            case 'dark':
+                setTheme('dark');
+                break;
+            default:
+                setTheme('light');
+                break;
+        }
+    };
+
     return (
-        <div className="wrapper">
-            <Header />
+        <div className={`${theme} wrapper`}>
+            <Header functions={{ themeToggle }} theme={theme} />
             <MemeGenerator memes={memeList} saveMeme={saveMeme} />
             <SavedList
                 functions={{ editMeme, deleteMeme }}
