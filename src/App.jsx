@@ -58,7 +58,11 @@ const App = () => {
         <div className={`${theme} wrapper`}>
             <Header functions={{ themeToggle }} theme={theme} />
             <div className="content-wrapper">
-                <MemeGenerator memes={memeList} saveMeme={saveMeme} />
+                <MemeGenerator
+                    theme={theme}
+                    memes={memeList}
+                    saveMeme={saveMeme}
+                />
                 <SavedList
                     functions={{ editMeme, deleteMeme }}
                     savedMemes={savedMemeList}

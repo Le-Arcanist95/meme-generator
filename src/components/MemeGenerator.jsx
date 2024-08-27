@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-export const MemeGenerator = ({ memes, saveMeme }) => {
+export const MemeGenerator = ({ theme, memes, saveMeme }) => {
     //  Initial input state for reset and clear
     const initInputState = {
         topText: '',
@@ -62,7 +62,10 @@ export const MemeGenerator = ({ memes, saveMeme }) => {
         <div className="generator-container">
             <div className="generator-display">
                 <img src={displayImg} className="meme-image" />
-                <button className="clear-button" onClick={handleClear}>
+                <button
+                    className={`${theme} clear-button`}
+                    onClick={handleClear}
+                >
                     X
                 </button>
                 <p className="top-text meme-text">{inputFields.topText}</p>
@@ -71,7 +74,10 @@ export const MemeGenerator = ({ memes, saveMeme }) => {
                 </p>
             </div>
             <div className="generator-controls">
-                <button className="refresh-button" onClick={handleNewMeme}>
+                <button
+                    className={`${theme} refresh-button`}
+                    onClick={handleNewMeme}
+                >
                     Refresh
                 </button>
                 <form className="input-form" onSubmit={handleSubmit}>
@@ -89,7 +95,9 @@ export const MemeGenerator = ({ memes, saveMeme }) => {
                         value={inputFields.bottomText}
                         onChange={handleFormChange}
                     />
-                    <button type="submit">Save</button>
+                    <button className={`${theme} submit-button`} type="submit">
+                        Save
+                    </button>
                 </form>
             </div>
         </div>

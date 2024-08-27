@@ -12,6 +12,7 @@
 .content-wrapper {
     display: flex;
     flex-flow: row wrap;
+    height: 80vh;
 }
 
 .light {
@@ -93,10 +94,10 @@
 }
 
 .generator-display {
-    border: 1px solid green;
     height: auto;
     width: 30vw;
     position: relative;
+    box-shadow: 0px -5px 20px 2px rgba(0, 0, 0, 0.75);
 }
 
 .meme-image {
@@ -108,7 +109,7 @@
 .clear-button {
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
 }
 
 .meme-text {
@@ -136,3 +137,37 @@
     width: 90%;
 }
 
+.generator-controls {
+    width: 30vw;
+    border: 1px solid black;
+    padding: 12px;
+    box-shadow: 0px 5px 20px 2px rgba(0, 0, 0, 0.75);
+    margin-top: 1em;
+}
+
+.refresh-button,
+.submit-button {
+    width: 100%;
+    font-size: 2em;
+    padding: 0.25em;
+    margin: 0.25em 0;
+}
+
+.refresh-button.light,
+.submit-button.light {
+    background-color: #ffdead;
+}
+
+.refresh-button.dark,
+.submit-button.dark {
+    background-color: #191170;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-form > input {
+    padding: 10px;
+}
