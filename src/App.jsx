@@ -57,11 +57,13 @@ const App = () => {
     return (
         <div className={`${theme} wrapper`}>
             <Header functions={{ themeToggle }} theme={theme} />
-            <MemeGenerator memes={memeList} saveMeme={saveMeme} />
-            <SavedList
-                functions={{ editMeme, deleteMeme }}
-                savedMemes={savedMemeList}
-            />
+            <div className="content-wrapper">
+                <MemeGenerator memes={memeList} saveMeme={saveMeme} />
+                <SavedList
+                    functions={{ editMeme, deleteMeme }}
+                    savedMemes={savedMemeList}
+                />
+            </div>
             {/* 
               Footer
                 Social Links

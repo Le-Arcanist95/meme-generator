@@ -23,6 +23,10 @@ export const MemeGenerator = ({ memes, saveMeme }) => {
         bottomText: '',
     });
 
+    // Ternary to handle image display link
+    const displayImg =
+        currentMeme.url === '' ? 'https://placehold.co/500' : currentMeme.url;
+
     // Functions to handle State changes
     const handleFormChange = (e) => {
         const { name, value } = e.target;
@@ -56,15 +60,8 @@ export const MemeGenerator = ({ memes, saveMeme }) => {
 
     return (
         <div className="generator-container">
-            <div className="meme-display">
-                <img
-                    src={
-                        currentMeme.url === ''
-                            ? 'https://placehold.co/750x750'
-                            : currentMeme.url
-                    }
-                    className="meme-image"
-                />
+            <div className="generator-display">
+                <img src={displayImg} className="meme-image" />
                 <button className="clear-button" onClick={handleClear}>
                     X
                 </button>
@@ -73,26 +70,28 @@ export const MemeGenerator = ({ memes, saveMeme }) => {
                     {inputFields.bottomText}
                 </p>
             </div>
-            <button className="refresh-button" onClick={handleNewMeme}>
-                Refresh
-            </button>
-            <form className="input-form" onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="topText"
-                    placeholder="Top Text"
-                    value={inputFields.topText}
-                    onChange={handleFormChange}
-                />
-                <input
-                    type="text"
-                    name="bottomText"
-                    placeholder="Bottom Text"
-                    value={inputFields.bottomText}
-                    onChange={handleFormChange}
-                />
-                <button type="submit">Save</button>
-            </form>
+            <div className="generator-controls">
+                <button className="refresh-button" onClick={handleNewMeme}>
+                    Refresh
+                </button>
+                <form className="input-form" onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        name="topText"
+                        placeholder="Top Text"
+                        value={inputFields.topText}
+                        onChange={handleFormChange}
+                    />
+                    <input
+                        type="text"
+                        name="bottomText"
+                        placeholder="Bottom Text"
+                        value={inputFields.bottomText}
+                        onChange={handleFormChange}
+                    />
+                    <button type="submit">Save</button>
+                </form>
+            </div>
         </div>
     );
 };
