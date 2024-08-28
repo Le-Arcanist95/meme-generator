@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const ListItem = ({ data, functions }) => {
+export const ListItem = ({ theme, data, functions }) => {
     const { editMeme, deleteMeme } = functions;
 
     const [isEditing, setIsEditing] = useState(false);
@@ -29,43 +29,49 @@ export const ListItem = ({ data, functions }) => {
         toggleEditing();
     };
 
-    console.log("listItemLoaded")
-
     return (
-        <div className="saved-item">
-            <img src={data.url} className="item-image" />
-            <p className="item-topText">{data.topText}</p>
-            <p className="item-bottomText">{data.bottomText}</p>
+        <div className="item-container">
+            <div className="item-display">
+                <img src={data.url} className="meme-image" />
+                <p className="top-text meme-text">{data.topText}</p>
+                <p className="bottom-text meme-text">{data.bottomText}</p>
+            </div>
             {isEditing ? (
-                <>
-                    <form onSubmit={handleEditSubmit}>
-                        <input
-                            type="text"
-                            name="topText"
-                            value={editData.topText}
-                            onChange={handleEditFormChange}
-                        />
-                        <input
-                            type="text"
-                            name="bottomText"
-                            value={editData.bottomText}
-                            onChange={handleEditFormChange}
-                        />
-                        <button type="submit">Save Changes</button>
-                    </form>
-                </>
-            ) : (
-                <>
+                <form onSubmit={handleEditSubmit} className="edit-form">
+                    <input
+                        type="text"
+                        name="topText"
+                        value={editData.topText}
+                        onChange={handleEditFormChange}
+                    />
+                    <input
+                        type="text"
+                        name="bottomText"
+                        value={editData.bottomText}
+                        onChange={handleEditFormChange}
+                    />
                     <button
-                        className="delete-button"
+                        className={`${theme} item-submit button`}
+                        type="submit"
+                    >
+                        Save Changes
+                    </button>
+                </form>
+            ) : (
+                <div className="item-controls" id="item-">
+                    <button
+                        className={`${theme} item-delete button`}
                         onClick={() => deleteMeme(data.id)}
                     >
                         Delete
                     </button>
-                    <button className="edit-button" onClick={toggleEditing}>
+                    <button
+                        className={`${theme} item-edit button`}
+                        onClick={toggleEditing}
+                    >
                         Edit
                     </button>
-                </>
+                </div>
             )}
         </div>
     );

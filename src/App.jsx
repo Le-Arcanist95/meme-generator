@@ -4,6 +4,7 @@ import { fetchMemes } from './api';
 import { Header } from './components/Header';
 import { MemeGenerator } from './components/MemeGenerator';
 import { SavedList } from './components/SavedList';
+import { Footer } from './components/Footer';
 
 const App = () => {
     // State for Fetched Meme Array
@@ -12,6 +13,10 @@ const App = () => {
     const [savedMemeList, setSavedMemeList] = useState([]);
     // State for Theme Context
     const [theme, setTheme] = useState('light');
+
+    useEffect(() => {
+        console.log(savedMemeList);
+    }, [savedMemeList]);
 
     // useEffect for axios GET request to "https://api.imgflip.com/get_memes"
     useEffect(() => {
@@ -29,7 +34,9 @@ const App = () => {
     const editMeme = (id, updatedData) => {
         setSavedMemeList((prev) =>
             prev.map((savedMeme) =>
-                savedMeme.id === id ? { ...savedMeme, updatedData } : savedMeme
+                savedMeme.id === id
+                    ? { ...savedMeme, ...updatedData }
+                    : savedMeme
             )
         );
     };
@@ -64,6 +71,7 @@ const App = () => {
                     saveMeme={saveMeme}
                 />
                 <SavedList
+                    theme={theme}
                     functions={{ editMeme, deleteMeme }}
                     savedMemes={savedMemeList}
                 />
@@ -74,6 +82,7 @@ const App = () => {
                 Accredidation 
                 Copyright
             */}
+            <Footer theme={theme} />
         </div>
     );
 };

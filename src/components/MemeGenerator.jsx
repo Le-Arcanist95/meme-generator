@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 export const MemeGenerator = ({ theme, memes, saveMeme }) => {
@@ -60,22 +60,9 @@ export const MemeGenerator = ({ theme, memes, saveMeme }) => {
 
     return (
         <div className="generator-container">
-            <div className="generator-display">
-                <img src={displayImg} className="meme-image" />
-                <button
-                    className={`${theme} clear-button`}
-                    onClick={handleClear}
-                >
-                    X
-                </button>
-                <p className="top-text meme-text">{inputFields.topText}</p>
-                <p className="bottom-text meme-text">
-                    {inputFields.bottomText}
-                </p>
-            </div>
             <div className="generator-controls">
                 <button
-                    className={`${theme} refresh-button`}
+                    className={`${theme} generator-refresh button`}
                     onClick={handleNewMeme}
                 >
                     Refresh
@@ -95,10 +82,26 @@ export const MemeGenerator = ({ theme, memes, saveMeme }) => {
                         value={inputFields.bottomText}
                         onChange={handleFormChange}
                     />
-                    <button className={`${theme} submit-button`} type="submit">
+                    <button
+                        className={`${theme} generator-submit button`}
+                        type="submit"
+                    >
                         Save
                     </button>
                 </form>
+            </div>
+            <div className="generator-display">
+                <img src={displayImg} className="meme-image" />
+                <button
+                    className={`${theme} clear-button`}
+                    onClick={handleClear}
+                >
+                    X
+                </button>
+                <p className="top-text meme-text">{inputFields.topText}</p>
+                <p className="bottom-text meme-text">
+                    {inputFields.bottomText}
+                </p>
             </div>
         </div>
     );

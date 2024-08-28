@@ -4,15 +4,11 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
-/* Global Styles */
-.wrapper {
-    height: 100vh;
-}
-
 .content-wrapper {
     display: flex;
     flex-flow: row wrap;
-    height: 80vh;
+    justify-content: center;
+    border: 5px teal;
 }
 
 .light {
@@ -31,21 +27,46 @@
     flex: 1 0 0;
 }
 
-/* Header Styling */
+.button {
+    width: 100%;
+    font-size: 2em;
+    padding: 0.25em;
+    margin: 0.25em 0;
+}
+
+.button.light {
+    background-color: #ffdead;
+}
+
+.button.dark {
+    background-color: #191170;
+}
+
 .heading {
-    height: 10vh;
-    padding-inline: 2em;
     align-items: center;
 }
 
+.heading,
+.footer {
+    padding: 1em 2em;
+}
+
 .heading.light {
-    background-color: #fcf5e5;
     box-shadow: inset 0 -6px 12px 0 rgba(0, 0, 0, 0.5);
 }
 
 .heading.dark {
-    background-color: #301934;
     box-shadow: inset 0 -6px 12px 0 rgba(204, 211, 219, 0.5);
+}
+
+.heading.light,
+.footer.light {
+    background-color: #fcf5e5;
+}
+
+.heading.dark,
+.footer.dark {
+    background-color: #301934;
 }
 
 .heading > .flex-item {
@@ -83,27 +104,34 @@
     font-size: 2.5em;
 }
 
-/* Meme Generator Container Styling */
 .generator-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 45vw;
+    margin: 1em;
     padding: 2em;
+    border: 1px solid black;
+    width: 45%;
+    /* height: 80%; */
 }
 
 .generator-display {
-    height: auto;
-    width: 30vw;
+    box-shadow: 0px 5px 20px 2px rgba(0, 0, 0, 0.75);
+}
+
+.generator-display,
+.item-display {
+    /* height: auto; */
+    width: 100%;
     position: relative;
-    box-shadow: 0px -5px 20px 2px rgba(0, 0, 0, 0.75);
+    border: 5px solid red;
 }
 
 .meme-image {
-    height: auto;
+    height: 100%; /* 100% corrects whitespace for generator display, but not saved item */
     width: 100%;
     object-fit: cover;
+    border: 5px solid green;
 }
 
 .clear-button {
@@ -121,6 +149,7 @@
     text-wrap: wrap;
     text-align: center;
     word-break: break-word;
+    border: 5px solid yellow;
 }
 
 .top-text {
@@ -138,36 +167,111 @@
 }
 
 .generator-controls {
-    width: 30vw;
+    width: 100%;
     border: 1px solid black;
     padding: 12px;
     box-shadow: 0px 5px 20px 2px rgba(0, 0, 0, 0.75);
-    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
-.refresh-button,
-.submit-button {
-    width: 100%;
-    font-size: 2em;
-    padding: 0.25em;
-    margin: 0.25em 0;
-}
-
-.refresh-button.light,
-.submit-button.light {
-    background-color: #ffdead;
-}
-
-.refresh-button.dark,
-.submit-button.dark {
-    background-color: #191170;
-}
-
-.input-form {
+.input-form,
+.edit-form {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
-.input-form > input {
+.input-form > input,
+.edit-form > input {
     padding: 10px;
+}
+
+/* Saved List Container Styling */
+.list-container {
+    margin: 1em;
+    padding: 2em;
+    border: 1px solid black;
+    width: 45%;
+    max-height: 80%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list-display {
+}
+
+.item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em;
+    padding: 2em;
+}
+
+.item-display {
+    box-shadow: 0px -5px 20px 2px rgba(0, 0, 0, 0.75);
+}
+
+.item-controls {
+    width: 100%;
+}
+
+.item-delete {
+    width: 50%;
+    margin: 0;
+}
+
+.item-edit {
+    width: 50%;
+    margin: 0;
+}
+
+.item-submit {
+    margin-top: 0;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer.light {
+    box-shadow: inset 0 6px 12px 0 rgba(0, 0, 0, 0.5);
+}
+
+.footer.dark {
+    box-shadow: inset 0 6px 12px 0 rgba(204, 211, 219, 0.5);
+}
+
+.footer-navlist {
+    flex-flow: row wrap;
+    width: 100%;
+    margin: 0.25em 0 0.5em 0;
+}
+
+.footer-navlist > .flex-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navlist-item.light {
+    background-color: #fcf5e5;
+}
+
+.navlist-item.dark {
+    background-color: #301934;
+}
+
+.navlist-item.light > a {
+    color: #ffdead;
+}
+
+.navlist-item.dark > a {
+    color: #191170;
 }

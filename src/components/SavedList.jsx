@@ -1,9 +1,20 @@
 import { ListItem } from './ListItem';
 
-export const SavedList = ({ savedMemes, functions }) => {
+export const SavedList = ({ theme, savedMemes, functions }) => {
     const displayList = savedMemes.map((savedMeme) => (
-        <ListItem key={savedMeme.id} data={savedMeme} functions={functions} />
+        <ListItem
+            key={savedMeme.id}
+            theme={theme}
+            data={savedMeme}
+            functions={functions}
+            className="list-item"
+        />
     ));
 
-    return <>{displayList}</>;
+    return (
+        <div className="list-container">
+            <div className="list-display">{displayList}</div>
+            <div className="list-navigation"></div>
+        </div>
+    );
 };
