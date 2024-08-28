@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { ThemeContext } from '../context/themeContext';
 
-export const ListItem = ({ theme, data, functions }) => {
+export const ListItem = ({ data, functions }) => {
+    const { theme } = useContext(ThemeContext);
+
     const { editMeme, deleteMeme } = functions;
 
     const [isEditing, setIsEditing] = useState(false);

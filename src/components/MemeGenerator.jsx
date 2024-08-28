@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { ThemeContext } from '../context/themeContext';
 import { v4 as uuidv4 } from 'uuid';
 
-export const MemeGenerator = ({ theme, memes, saveMeme }) => {
+export const MemeGenerator = ({ memes, saveMeme }) => {
+    const { theme } = useContext(ThemeContext);
+
     //  Initial input state for reset and clear
     const initInputState = {
         topText: '',
@@ -60,6 +63,19 @@ export const MemeGenerator = ({ theme, memes, saveMeme }) => {
 
     return (
         <div className="generator-container">
+            <div className="generator-display">
+                <img src={displayImg} className="meme-image" />
+                <button
+                    className={`${theme} clear-button`}
+                    onClick={handleClear}
+                >
+                    X
+                </button>
+                <p className="top-text meme-text">{inputFields.topText}</p>
+                <p className="bottom-text meme-text">
+                    {inputFields.bottomText}
+                </p>
+            </div>
             <div className="generator-controls">
                 <button
                     className={`${theme} generator-refresh button`}
@@ -89,19 +105,6 @@ export const MemeGenerator = ({ theme, memes, saveMeme }) => {
                         Save
                     </button>
                 </form>
-            </div>
-            <div className="generator-display">
-                <img src={displayImg} className="meme-image" />
-                <button
-                    className={`${theme} clear-button`}
-                    onClick={handleClear}
-                >
-                    X
-                </button>
-                <p className="top-text meme-text">{inputFields.topText}</p>
-                <p className="bottom-text meme-text">
-                    {inputFields.bottomText}
-                </p>
             </div>
         </div>
     );

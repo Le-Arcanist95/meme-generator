@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { ThemeContext } from '../context/themeContext';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faFacebookF,
@@ -7,7 +10,11 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 
-export const Footer = ({ theme }) => {
+export const Footer = () => {
+    const { theme } = useContext(ThemeContext);
+
+    const iconInverse = theme === 'light' ? 'fa-inverse' : 'fa-inverse';
+
     return (
         <footer className={`${theme} footer`}>
             <div className="footer-navlist flex-container">
@@ -20,7 +27,7 @@ export const Footer = ({ theme }) => {
                             />
                             <FontAwesomeIcon
                                 icon={faXTwitter}
-                                className="fa-stack-1x fa-inverse"
+                                className={`fa-stack-1x ${iconInverse}`}
                             />
                         </span>
                     </a>
@@ -34,7 +41,7 @@ export const Footer = ({ theme }) => {
                             />
                             <FontAwesomeIcon
                                 icon={faFacebookF}
-                                className="fa-stack-1x fa-inverse"
+                                className={`fa-stack-1x ${iconInverse}`}
                             />
                         </span>
                     </a>
@@ -48,7 +55,7 @@ export const Footer = ({ theme }) => {
                             />
                             <FontAwesomeIcon
                                 icon={faInstagram}
-                                className="fa-stack-1x fa-inverse"
+                                className={`fa-stack-1x ${iconInverse}`}
                             />
                         </span>
                     </a>
@@ -62,7 +69,7 @@ export const Footer = ({ theme }) => {
                             />
                             <FontAwesomeIcon
                                 icon={faGithub}
-                                className="fa-stack-1x fa-inverse"
+                                className={`fa-stack-1x ${iconInverse}`}
                             />
                         </span>
                     </a>

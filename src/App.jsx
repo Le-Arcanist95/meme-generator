@@ -1,19 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { fetchMemes } from './api';
-
 import { Header } from './components/Header';
 import { MemeGenerator } from './components/MemeGenerator';
 import { SavedList } from './components/SavedList';
 import { Footer } from './components/Footer';
+import { ThemeContext } from './context/themeContext';
 
 const App = () => {
+    // Theme from Context
+    const { theme } = useContext(ThemeContext);
+
     // State for Fetched Meme Array
     const [memeList, setMemeList] = useState([]);
     // State for Saved Meme Array
     const [savedMemeList, setSavedMemeList] = useState([]);
-    // State for Theme Context
-    const [theme, setTheme] = useState('light');
 
+    // Testing logs
     useEffect(() => {
         console.log(savedMemeList);
     }, [savedMemeList]);
@@ -47,23 +49,9 @@ const App = () => {
         );
     };
 
-    const themeToggle = (themeVal) => {
-        switch (themeVal) {
-            case 'light':
-                setTheme('light');
-                break;
-            case 'dark':
-                setTheme('dark');
-                break;
-            default:
-                setTheme('light');
-                break;
-        }
-    };
-
     return (
         <div className={`${theme} wrapper`}>
-            <Header functions={{ themeToggle }} theme={theme} />
+            <Header />
             <div className="content-wrapper">
                 <MemeGenerator
                     theme={theme}
@@ -76,12 +64,6 @@ const App = () => {
                     savedMemes={savedMemeList}
                 />
             </div>
-            {/* 
-              Footer
-                Social Links
-                Accredidation 
-                Copyright
-            */}
             <Footer theme={theme} />
         </div>
     );
