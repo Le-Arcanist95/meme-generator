@@ -1,18 +1,12 @@
 import { useContext } from 'react';
-import { ThemeContext } from '../context/themeContext';
 import { ListItem } from './ListItem';
+import { MemeContext } from '../context/MemeContext';
 
-export const SavedList = ({ savedMemes, functions }) => {
-    const { theme } = useContext(ThemeContext);
+export const SavedList = () => {
+    const { savedMemeList } = useContext(MemeContext);
 
-    const displayList = savedMemes.map((savedMeme) => (
-        <ListItem
-            key={savedMeme.id}
-            theme={theme}
-            data={savedMeme}
-            functions={functions}
-            className="list-item"
-        />
+    const displayList = savedMemeList.map((savedMeme) => (
+        <ListItem key={savedMeme.id} data={savedMeme} className="list-item" />
     ));
 
     return (

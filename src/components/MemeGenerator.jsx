@@ -1,9 +1,11 @@
 import { useState, useContext } from 'react';
-import { ThemeContext } from '../context/themeContext';
+import { ThemeContext } from '../context/ThemeContext';
+import { MemeContext } from '../context/MemeContext';
 import { v4 as uuidv4 } from 'uuid';
 
-export const MemeGenerator = ({ memes, saveMeme }) => {
+export const MemeGenerator = () => {
     const { theme } = useContext(ThemeContext);
+    const { memeList, saveMeme } = useContext(MemeContext);
 
     //  Initial input state for reset and clear
     const initInputState = {
@@ -45,11 +47,10 @@ export const MemeGenerator = ({ memes, saveMeme }) => {
     };
 
     const handleNewMeme = () => {
-        const randomIndex = Math.floor(Math.random() * memes.length);
-        const newMeme = memes[randomIndex];
+        const randomIndex = Math.floor(Math.random() * memeList.length);
+        const newMeme = memeList[randomIndex];
 
         setCurrentMeme({ ...newMeme, id: uuidv4() });
-        // setCurrentMeme((prev) => ({ ...prev, id: uuidv4() }));
         setInputFields(initInputState);
     };
 
