@@ -27,6 +27,16 @@
     flex: 1 0 0;
 }
 
+.theme-selector {
+    margin-left: auto;
+}
+
+.theme-option {
+    color: #28282b;
+    font-size: 1.5em;
+    text-align: center;
+}
+
 .button {
     width: 100%;
     font-size: 2em;

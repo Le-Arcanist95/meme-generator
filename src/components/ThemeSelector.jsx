@@ -15,11 +15,12 @@ export const ThemeSelector = () => {
 
     return (
         <Select
+            className="theme-selector"
             value={theme}
             options={themeOptions}
             onChange={handleSelect}
             formatOptionLabel={(theme) => (
-                <div className="theme-Option">
+                <div className="theme-option">
                     {theme.icon === 'faSun' && <FontAwesomeIcon icon={faSun} />}
                     {theme.icon === 'faMoon' && (
                         <FontAwesomeIcon icon={faMoon} />
@@ -30,8 +31,6 @@ export const ThemeSelector = () => {
                     {theme.icon === 'faSnowflake' && (
                         <FontAwesomeIcon icon={faSnowflake} />
                     )}
-
-                    <span>{theme.label}</span>
                 </div>
             )}
         />
