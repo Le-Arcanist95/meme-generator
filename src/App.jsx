@@ -14,13 +14,13 @@ const App = () => {
 
     return (
         <MemeContextProvider>
-            <div className={`${theme} wrapper`}>
+            <div className={`${theme.value} wrapper`}>
                 <Header />
                 <div className="content-wrapper">
                     <MemeGenerator />
                     <SavedList />
                 </div>
-                <Footer theme={theme} />
+                <Footer />
             </div>
         </MemeContextProvider>
     );

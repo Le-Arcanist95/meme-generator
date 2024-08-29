@@ -76,11 +76,11 @@
     align-items: center;
 }
 
-.heading > .flex-item:first-child > h1 {
+.heading > .flex-item:first-child > h2 {
     margin-right: auto;
 }
 
-.heading > .flex-item:last-child > h2 {
+.heading > .flex-item:last-child > button {
     margin-left: auto;
 }
 
@@ -88,6 +88,7 @@
     font-size: 2.5em;
     font-weight: lighter;
     line-height: 1.5;
+    margin-right: 0.5em;
 }
 
 .theme-toggleBtn {

@@ -13,12 +13,12 @@ import { faCircle } from '@fortawesome/free-solid-svg-icons';
 export const Footer = () => {
     const { theme } = useContext(ThemeContext);
 
-    const iconInverse = theme === 'light' ? 'fa-inverse' : 'fa-inverse';
+    const iconInverse = theme.value === 'light' ? 'fa-inverse' : 'fa-inverse';
 
     return (
-        <footer className={`${theme} footer`}>
+        <footer className={`${theme.value} footer`}>
             <div className="footer-navlist flex-container">
-                <div className={`${theme} navlist-item flex-item`}>
+                <div className={`${theme.value} navlist-item flex-item`}>
                     <a href="#!">
                         <span className="fa-stack fa-xl">
                             <FontAwesomeIcon
@@ -32,7 +32,7 @@ export const Footer = () => {
                         </span>
                     </a>
                 </div>
-                <div className={`${theme} navlist-item flex-item`}>
+                <div className={`${theme.value} navlist-item flex-item`}>
                     <a href="#!">
                         <span className="fa-stack fa-xl">
                             <FontAwesomeIcon
@@ -46,7 +46,7 @@ export const Footer = () => {
                         </span>
                     </a>
                 </div>
-                <div className={`${theme} navlist-item flex-item`}>
+                <div className={`${theme.value} navlist-item flex-item`}>
                     <a href="#!">
                         <span className="fa-stack fa-xl">
                             <FontAwesomeIcon
@@ -60,7 +60,7 @@ export const Footer = () => {
                         </span>
                     </a>
                 </div>
-                <div className={`${theme} navlist-item flex-item`}>
+                <div className={`${theme.value} navlist-item flex-item`}>
                     <a href="#!">
                         <span className="fa-stack fa-xl">
                             <FontAwesomeIcon

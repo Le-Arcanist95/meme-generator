@@ -9,24 +9,12 @@ const MemeContextProvider = ({ children }) => {
     // State for Saved Meme Array
     const [savedMemeList, setSavedMemeList] = useState([]);
 
-    // Testing logs
-    useEffect(() => {
-        console.log(savedMemeList);
-    }, [savedMemeList]);
-
     // useEffect for axios GET request to "https://api.imgflip.com/get_memes"
     useEffect(() => {
         fetchMemes.then((res) => {
             setMemeList(res.memes.filter((memeObj) => memeObj.box_count === 2));
         });
     }, []);
-
-    useEffect(() => {
-        console.log(memeList);
-    }, [memeList]);
-    useEffect(() => {
-        console.log(savedMemeList);
-    }, [savedMemeList]);
 
     //  CRUD Functionality for Saved Memes
     //    POST - Save Meme

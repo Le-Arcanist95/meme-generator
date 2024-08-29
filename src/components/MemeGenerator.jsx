@@ -67,7 +67,7 @@ export const MemeGenerator = () => {
             <div className="generator-display">
                 <img src={displayImg} className="meme-image" />
                 <button
-                    className={`${theme} clear-button`}
+                    className={`${theme.value} clear-button`}
                     onClick={handleClear}
                 >
                     X
@@ -79,7 +79,7 @@ export const MemeGenerator = () => {
             </div>
             <div className="generator-controls">
                 <button
-                    className={`${theme} generator-refresh button`}
+                    className={`${theme.value} generator-refresh button`}
                     onClick={handleNewMeme}
                 >
                     Refresh
@@ -100,7 +100,7 @@ export const MemeGenerator = () => {
                         onChange={handleFormChange}
                     />
                     <button
-                        className={`${theme} generator-submit button`}
+                        className={`${theme.value} generator-submit button`}
                         type="submit"
                     >
                         Save

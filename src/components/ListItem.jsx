@@ -54,7 +54,7 @@ export const ListItem = ({ data }) => {
                         onChange={handleEditFormChange}
                     />
                     <button
-                        className={`${theme} item-submit button`}
+                        className={`${theme.value} item-submit button`}
                         type="submit"
                     >
                         Save Changes
@@ -63,13 +63,13 @@ export const ListItem = ({ data }) => {
             ) : (
                 <div className="item-controls" id="item-">
                     <button
-                        className={`${theme} item-delete button`}
+                        className={`${theme.value} item-delete button`}
                         onClick={() => deleteMeme(data.id)}
                     >
                         Delete
                     </button>
                     <button
-                        className={`${theme} item-edit button`}
+                        className={`${theme.value} item-edit button`}
                         onClick={toggleEditing}
                     >
                         Edit
