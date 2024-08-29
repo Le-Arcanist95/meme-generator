@@ -1,35 +1,16 @@
 import { useContext, useState } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
 import { MemeContext } from '../context/MemeContext';
+import { EditForm } from './EditForm';
 
 export const ListItem = ({ data }) => {
     const { theme } = useContext(ThemeContext);
-    const { editMeme, deleteMeme } = useContext(MemeContext);
+    const { deleteMeme } = useContext(MemeContext);
 
     const [isEditing, setIsEditing] = useState(false);
-    const [editData, setEditData] = useState({
-        topText: data.topText,
-        bottomText: data.bottomText,
-    });
 
     const toggleEditing = () => {
         setIsEditing(!isEditing);
-    };
-
-    const handleEditFormChange = (e) => {
-        const { name, value } = e.target;
-
-        setEditData((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
-    };
-
-    const handleEditSubmit = (e) => {
-        e.preventDefault();
-
-        editMeme(data.id, editData);
-        toggleEditing();
     };
 
     return (
@@ -40,26 +21,7 @@ export const ListItem = ({ data }) => {
                 <p className="bottom-text meme-text">{data.bottomText}</p>
             </div>
             {isEditing ? (
-                <form onSubmit={handleEditSubmit} className="edit-form">
-                    <input
-                        type="text"
-                        name="topText"
-                        value={editData.topText}
-                        onChange={handleEditFormChange}
-                    />
-                    <input
-                        type="text"
-                        name="bottomText"
-                        value={editData.bottomText}
-                        onChange={handleEditFormChange}
-                    />
-                    <button
-                        className={`${theme.value} item-submit button`}
-                        type="submit"
-                    >
-                        Save Changes
-                    </button>
-                </form>
+                <EditForm data={data} toggleEditing={toggleEditing} />
             ) : (
                 <div className="item-controls" id="item-">
                     <button
